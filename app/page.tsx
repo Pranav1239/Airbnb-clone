@@ -1,6 +1,6 @@
-import Navbar from '@/components/base/Navbar'
+
+import Navbar from '@/components/Header/Navbar'
 import AllCategories from '@/components/common/AllCategories'
-import Image from 'next/image'
 
 export default function Home() {
   return (

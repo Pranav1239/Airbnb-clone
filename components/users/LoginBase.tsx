@@ -1,7 +1,8 @@
 "use client"
+import { useForm } from "react-hook-form"
+import { yupResolver } from "@hookform/resolvers/yup"
 import {
     AlertDialog,
-    AlertDialogAction,
     AlertDialogCancel,
     AlertDialogContent,
     AlertDialogDescription,
@@ -15,67 +16,122 @@ import { Button } from "../ui/button"
 import Image from "next/image"
 import { useState } from "react"
 import { AiOutlineClose } from "react-icons/ai"
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useRouter } from "next/navigation";
+import { loginSchema , LoginType } from "@/validations/authSchema"
 
 function LoginBase() {
+    const supabase = createClientComponentClient();
     const [open, setOpen] = useState<boolean>(false)
-    return (
-        <AlertDialog>
-            <AlertDialogTrigger asChild>
-                <li className="hover:bg-gray-200 rounded-md p-2 cursor-pointer">Login</li>
-            </AlertDialogTrigger>
-            <AlertDialogContent>
-                <AlertDialogHeader>
-                    <AlertDialogTitle>
-                        <div className="flex justify-between items-center">
-                            <h1>Login</h1>
-                            <AlertDialogCancel><AiOutlineClose /></AlertDialogCancel>
-                        </div></AlertDialogTitle>
-                    <AlertDialogDescription>
-                        <div className="mt-4">
-                            <form>
-                                <h1 className="text-xl font-bold">Welcome to Airbnb</h1>
-                                <div className="mt-5">
-                                    <Label htmlFor="email">Email</Label>
-                                    <Input placeholder="Enter your email" id="email" />
-                                    <span className="text-red-500"></span>
-                                </div>
-                                <div className="mt-5">
-                                    <Label htmlFor="password">Password</Label>
-                                    <Input placeholder="Enter your password..." id="password" />
-                                    <span className="text-red-500"></span>
-                                </div>
-                                <div className="mt-5">
-                                    <Button className="bg-brand w-full">Continue</Button>
-                                </div>
-                                <div className="mt-5">
-                                    <Button variant="outline" className="w-full">
-                                        <Image
-                                            src="/images/google.png"
-                                            alt="google"
-                                            width={25}
-                                            height={25}
-                                            className="mx-3"
-                                        />
-                                        Continue with Google
-                                    </Button>
-                                    <Button variant="outline" className="w-full">
-                                        <Image
-                                            src="/images/github.png"
-                                            alt="github"
-                                            width={25}
-                                            height={25}
-                                            className="mx-3"
-                                        />
-                                        Continue with Github
-                                    </Button>
-                                </div>
-                            </form>
-                        </div>
-                    </AlertDialogDescription>
-                </AlertDialogHeader>
-            </AlertDialogContent>
-        </AlertDialog>
+    const [loading, setLoading] = useState<boolean>(false);
+    const router = useRouter();
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+      } = useForm<LoginType>({
+        resolver: yupResolver(loginSchema),
+      });
+    
 
+    const onSubmit = async (payload: LoginType) => {
+        const { data, error } = await supabase.auth.signInWithPassword({
+          email: payload.email,
+          password: payload.password,
+        });
+    
+        if (error) {
+          toast.error(error.message, { theme: "colored" });
+        } else if (data.user) {
+          setOpen(false);
+          router.refresh();
+          toast.success("Logged in successfully!", { theme: "colored" });
+        }
+      };
+    return (
+            <AlertDialog open={open}>
+                <AlertDialogTrigger asChild>
+                    <li className="hover:bg-gray-200 rounded-md p-2 cursor-pointer"
+                      onClick={() => setOpen(true)}
+                     >Login</li>
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                    <AlertDialogHeader>
+                        <AlertDialogTitle>
+                        <ToastContainer />  
+                            <div className="flex justify-between items-center">
+                                <h1>Login</h1>
+                                <AiOutlineClose onClick={() => setOpen(false)} className="cursor-pointer" />
+                            </div></AlertDialogTitle>
+                        <AlertDialogDescription asChild>
+                            <div className="mt-4">
+
+                                <form onSubmit={handleSubmit(onSubmit)}>
+                                    <h1 className="text-xl font-bold">Welcome to Airbnb</h1>
+                                    <div className="mt-5">
+                                        <Label htmlFor="email">Email</Label>
+                                        <Input
+                                            placeholder="Enter your email"
+                                            id="email"
+                                            type="email"
+                                            {...register("email")}
+                                        />
+                                        <span className="text-red-500" typeof="">
+                                            {errors.email?.message}
+                                        </span>
+                                    </div>
+                                    <div className="mt-5">
+                                        <Label htmlFor="password">Password</Label>
+                                        <Input
+                                            placeholder="Enter your password..."
+                                            id="password"
+                                            type="password"
+                                            {...register("password")}
+                                        />
+                                        <span className="text-red-500">
+                                            {errors.password?.message}
+                                        </span>
+                                    </div>
+                                    <div className="mt-5">
+                                        <Button
+                                            className="bg-brand w-full"
+                                            disabled={loading}
+                                            type="submit"
+                                            >
+                                            
+                                            {loading ? "Processing..." : "Continue"}
+                                        </Button>
+                                    </div>
+                                    <div className="mt-5">
+                                        <Button variant="outline" className="w-full">
+                                            <Image
+                                                src="/images/google.png"
+                                                alt="google"
+                                                width={25}
+                                                height={25}
+                                                className="mx-3"
+                                            />
+                                            Continue with Google
+                                        </Button>
+                                        <Button variant="outline" className="w-full">
+                                            <Image
+                                                src="/images/github.png"
+                                                alt="github"
+                                                width={25}
+                                                height={25}
+                                                className="mx-3"
+                                            />
+                                            Continue with Github
+                                        </Button>
+                                    </div>
+                                </form>
+                            </div>
+                        </AlertDialogDescription>
+                    </AlertDialogHeader>
+                </AlertDialogContent>
+            </AlertDialog>
     )
 }
 

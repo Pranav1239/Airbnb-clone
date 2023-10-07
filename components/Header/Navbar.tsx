@@ -1,14 +1,20 @@
 import Logo from "./Logo"
 import { AiOutlineSearch } from "react-icons/ai"
 import Navmenu from "./Navmenu"
+import MobileNav from "./MobileNav"
+import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
+import { cookies } from "next/headers";
 
-function Navbar() {
+async function  Navbar() {
+    const supabase = createServerComponentClient({ cookies });
+    const session = await supabase.auth.getSession();
     return (
         <div className="flex justify-between items-center px-10">
-            <div>
+            <div className="hidden md:block">
                 <Logo />
             </div>
-            <div className="flex items-center space-x-2">
+            <div className="w-full md:w-auto">
+            <div className="hidden md:flex items-center space-x-2">
                 <span className="text-sm">Anywhere</span>
                 <span>|</span>
                 <span className="text-sm">Anyweek</span>
@@ -18,10 +24,12 @@ function Navbar() {
                 <AiOutlineSearch  />
                 </span>
             </div>
-            <div className="flex flex-row items-center">
+            <MobileNav />
+            </div>
+            <div className="hidden md:flex flex-row items-center">
                 <h1 >Add home</h1>
                 <div className="mx-2">
-                <Navmenu />
+                <Navmenu session={session.data?.session}  />
                 </div>
             </div>
         </div>
