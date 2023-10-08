@@ -26,7 +26,7 @@ export default function SignOut() {
     return (
         <AlertDialog>
             <ToastContainer />
-            <AlertDialogTrigger>
+            <AlertDialogTrigger asChild>
                 <li className="hover:bg-gray-200 rounded-md p-2 cursor-pointer">
                     SignOut
                 </li>

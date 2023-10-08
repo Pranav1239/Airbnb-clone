@@ -13,7 +13,6 @@ import {
 import { Label } from "../ui/label"
 import { Input } from "../ui/input"
 import { Button } from "../ui/button"
-import Image from "next/image"
 import { useState } from "react"
 import { AiOutlineClose } from "react-icons/ai"
 import { RegisterType, registerSchema } from "@/validations/authSchema"
@@ -21,6 +20,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
 import { useRouter } from "next/navigation";
+import SocialLinks from "./SocialLinks"
 
 
 function SigninBase() {
@@ -125,26 +125,7 @@ function SigninBase() {
                                         </Button>
                                 </div>
                                 <div className="mt-5">
-                                    <Button variant="outline" className="w-full">
-                                        <Image
-                                            src="/images/google.png"
-                                            alt="google"
-                                            width={25}
-                                            height={25}
-                                            className="mx-3"
-                                        />
-                                        Continue with Google
-                                    </Button>
-                                    <Button variant="outline" className="w-full">
-                                        <Image
-                                            src="/images/github.png"
-                                            alt="github"
-                                            width={25}
-                                            height={25}
-                                            className="mx-3"
-                                        />
-                                        Continue with Github
-                                    </Button>
+                                    <SocialLinks />
                                 </div>
                             </form>
                         </div>

@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import {
     AlertDialog,
-    AlertDialogCancel,
     AlertDialogContent,
     AlertDialogDescription,
     AlertDialogHeader,
@@ -13,7 +12,6 @@ import {
 import { Label } from "../ui/label"
 import { Input } from "../ui/input"
 import { Button } from "../ui/button"
-import Image from "next/image"
 import { useState } from "react"
 import { AiOutlineClose } from "react-icons/ai"
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
@@ -21,6 +19,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
 import { loginSchema , LoginType } from "@/validations/authSchema"
+import SocialLinks from "./SocialLinks"
 
 function LoginBase() {
     const supabase = createClientComponentClient();
@@ -58,9 +57,9 @@ function LoginBase() {
                      >Login</li>
                 </AlertDialogTrigger>
                 <AlertDialogContent>
+                <ToastContainer />  
                     <AlertDialogHeader>
                         <AlertDialogTitle>
-                        <ToastContainer />  
                             <div className="flex justify-between items-center">
                                 <h1>Login</h1>
                                 <AiOutlineClose onClick={() => setOpen(false)} className="cursor-pointer" />
@@ -104,29 +103,8 @@ function LoginBase() {
                                             {loading ? "Processing..." : "Continue"}
                                         </Button>
                                     </div>
-                                    <div className="mt-5">
-                                        <Button variant="outline" className="w-full">
-                                            <Image
-                                                src="/images/google.png"
-                                                alt="google"
-                                                width={25}
-                                                height={25}
-                                                className="mx-3"
-                                            />
-                                            Continue with Google
-                                        </Button>
-                                        <Button variant="outline" className="w-full">
-                                            <Image
-                                                src="/images/github.png"
-                                                alt="github"
-                                                width={25}
-                                                height={25}
-                                                className="mx-3"
-                                            />
-                                            Continue with Github
-                                        </Button>
-                                    </div>
                                 </form>
+                                <SocialLinks />
                             </div>
                         </AlertDialogDescription>
                     </AlertDialogHeader>
