@@ -124,10 +124,8 @@ function SigninBase() {
                                         {loading ? "Processing..." : "Continue"}
                                         </Button>
                                 </div>
-                                <div className="mt-5">
-                                    <SocialLinks />
-                                </div>
                             </form>
+                            <SocialLinks />
                         </div>
                     </AlertDialogDescription>
                 </AlertDialogHeader>

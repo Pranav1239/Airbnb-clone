@@ -1,4 +1,9 @@
 type CategoriesType = {
-    name : String,
+    name : any,
     icon : any,
+}
+
+type CountriesType = {
+    label : string  | readonly string[] | undefined,
+    value : string  | readonly string[] | undefined,
 }

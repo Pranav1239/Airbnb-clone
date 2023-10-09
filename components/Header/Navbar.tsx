@@ -4,6 +4,7 @@ import Navmenu from "./Navmenu"
 import MobileNav from "./MobileNav"
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
+import Link from "next/link";
 
 async function  Navbar() {
     const supabase = createServerComponentClient({ cookies });
@@ -11,7 +12,9 @@ async function  Navbar() {
     return (
         <div className="flex justify-between items-center px-10">
             <div className="hidden md:block">
+                <Link href={"/"}>                    
                 <Logo />
+                </Link>
             </div>
             <div className="w-full md:w-auto">
             <div className="hidden md:flex items-center space-x-2">
@@ -27,7 +30,9 @@ async function  Navbar() {
             <MobileNav />
             </div>
             <div className="hidden md:flex flex-row items-center">
+                <Link href={"/add-home"}>
                 <h1 >Add home</h1>
+                </Link>
                 <div className="mx-2">
                 <Navmenu session={session.data?.session}  />
                 </div>

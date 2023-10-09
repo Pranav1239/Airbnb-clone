@@ -9,7 +9,7 @@ import SigninBase from "../users/SigninBase"
 import Link from "next/link"
 import SignOut from "../common/SignOut"
 
-function Navmenu({ session }: { session: object | undefined }) {
+function Navmenu({ session }: { session: object | null }) {
     return (
         <div>
             <Popover>
