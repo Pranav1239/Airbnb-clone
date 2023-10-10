@@ -30,10 +30,10 @@ async function  Navbar() {
             <MobileNav />
             </div>
             <div className="hidden md:flex flex-row items-center">
-                <Link href={"/add-home"}>
+                <Link href={"/add-home"} className="p-2 border-2 rounded-full">
                 <h1 >Add home</h1>
                 </Link>
-                <div className="mx-2">
+                <div className="mx-2 p-2 border-2 rounded-full">
                 <Navmenu session={session.data?.session}  />
                 </div>
             </div>

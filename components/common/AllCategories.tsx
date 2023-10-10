@@ -18,7 +18,7 @@ export default function AllCategories() {
             } */}
                   {categories.map((item) => (
         <div
-          className="flex justify-center flex-col items-center cursor-pointer "
+          className="flex justify-center opacity-70 hover:opacity-100 flex-col items-center cursor-pointer "
         >
           <Image src={item.icon} width={25} height={25} alt="icon" />
           <span

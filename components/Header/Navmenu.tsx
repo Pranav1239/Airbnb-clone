@@ -21,8 +21,13 @@ function Navmenu({ session }: { session: object | null }) {
                         {session ? (
                             <>
                                 <Link href="/dashboard">
-                                    <li className="hover:bg-gray-200 rounded-md p-2 cursor-pointer">
+                                    <li  className="hover:bg-gray-200 rounded-md p-2 list-none cursor-pointer">
                                         Dashboard
+                                    </li>
+                                </Link>
+                                <Link href="/add-home">
+                                    <li  className="hover:bg-gray-200 rounded-md p-2 list-none cursor-pointer">
+                                        Add Home
                                     </li>
                                 </Link>
                                 <SignOut />
