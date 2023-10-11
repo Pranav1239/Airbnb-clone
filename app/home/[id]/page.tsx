@@ -6,7 +6,7 @@ import Image from "next/image";
 
 export default async function page({ params }: { params: { id: number } }) {
     const supabase = createServerComponentClient({ cookies });
-    const { data, error } = await supabase
+    const { data } = await supabase
         .from('homes')
         .select("* , users(metadata->name)")
         .eq("id", params.id)

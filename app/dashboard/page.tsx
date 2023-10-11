@@ -24,7 +24,7 @@ import Link from "next/link";
 export default async function page() {
   const supabase = createServerComponentClient({ cookies });
   const user = await supabase.auth.getUser();
-  const { data, error } = await supabase.from("homes").select("id , image , title , city , country , state , price , created_at")
+  const { data } = await supabase.from("homes").select("id , image , title , city , country , state , price , created_at")
     .eq("user_id", user.data.user?.id)
   return (
     <div>

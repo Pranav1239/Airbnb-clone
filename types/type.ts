@@ -3,6 +3,17 @@ type CategoriesType = {
     icon : any,
 }
 
+type DateStateType = {
+  startDate: Date;
+  endDate: Date;
+  key: string;
+};
+
+type SearchParamsType = {
+  country: string;
+  weeks: string;
+};
+
 type CountriesType = {
     label : string  | readonly string[] | undefined,
     value : string  | readonly string[] | undefined,

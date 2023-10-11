@@ -5,11 +5,20 @@ import { cookies } from "next/headers";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import Toast from '@/components/base/Toast';
 
-export default async function Home() {
-  const supabase = createServerComponentClient({cookies});
-  const {data : homes , error} = await supabase
+export default async function Home({ searchParams }: { searchParams?: { [key: string]: string | undefined } }) {
+  const supabase = createServerComponentClient({ cookies });
+  const query = supabase
     .from("homes")
-    .select("id ,image ,title ,country ,city ,price , users (metadata->name)"); 
+    .select("id ,image ,title ,country ,city ,price , users (metadata->name)");
+
+  if (searchParams?.country) {
+    query.ilike("country", `%${searchParams?.country}%`);
+  }
+  if (searchParams?.category) {
+    query.contains("categories", [searchParams?.category]);
+  }
+
+  const { data: homes } = await query;
   return (
     <main>
       <Toast />
@@ -22,7 +31,11 @@ export default async function Home() {
           ))}
         </div>
       )}
-
+      {
+        homes && homes.length < 1 && (
+          <h1 className='font-bold text-brand text-center text-3xl'>No Airbnb Found</h1>
+        )
+      }
     </main>
   )
 }

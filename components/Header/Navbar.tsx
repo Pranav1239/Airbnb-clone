@@ -1,10 +1,9 @@
 import Logo from "./Logo"
-import { AiOutlineSearch } from "react-icons/ai"
 import Navmenu from "./Navmenu"
-import MobileNav from "./MobileNav"
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import Link from "next/link";
+import SearchSheet from "../Sheet/SearchSheet";
 
 async function  Navbar() {
     const supabase = createServerComponentClient({ cookies });
@@ -16,19 +15,7 @@ async function  Navbar() {
                 <Logo />
                 </Link>
             </div>
-            <div className="w-full md:w-auto">
-            <div className="hidden md:flex items-center space-x-2">
-                <span className="text-sm">Anywhere</span>
-                <span>|</span>
-                <span className="text-sm">Anyweek</span>
-                <span>|</span>
-                <span className="text-gray-400 text-sm">Add guest</span>
-                <span className="text-2xl text-white bg-brand rounded-full p-2"> 
-                <AiOutlineSearch  />
-                </span>
-            </div>
-            <MobileNav />
-            </div>
+            <SearchSheet session={session} />
             <div className="hidden md:flex flex-row items-center">
                 <Link href={"/add-home"} className="p-2 border-2 rounded-full">
                 <h1 >Add home</h1>
