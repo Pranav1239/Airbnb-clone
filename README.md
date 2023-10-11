@@ -1,4 +1,10 @@
-To get started, just clone the repository and run `npm install && npm run dev`:
+
+![Screenshot 2023-10-11 192839](https://github.com/Pranav1239/Airbnb-clone/assets/142288127/91a884fa-0716-44e3-ad91-a56f22d07ccf)
+<br>
+![Screenshot 2023-10-11 192853](https://github.com/Pranav1239/Airbnb-clone/assets/142288127/a18ebece-4c76-4e81-abfb-21055a250d47)
+<br>
+![Screenshot 2023-10-11 192947](https://github.com/Pranav1239/Airbnb-clone/assets/142288127/695393a2-59a9-4aa9-9495-bbd8b9e6378c)
+<br>
 
 ## Building and deploying
 
