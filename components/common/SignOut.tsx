@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/alert-dialog"
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
 import { useRouter } from "next/navigation";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function SignOut() {
@@ -25,7 +25,6 @@ export default function SignOut() {
     }
     return (
         <AlertDialog>
-            <ToastContainer />
             <AlertDialogTrigger asChild>
                 <li className="hover:bg-gray-200 rounded-md p-2 cursor-pointer">
                     SignOut
