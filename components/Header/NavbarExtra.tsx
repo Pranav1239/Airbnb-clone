@@ -1,7 +1,6 @@
 "use client"
-import Link from 'next/link'
 import React from 'react'
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -13,7 +12,7 @@ export default function NavbarExtra() {
         <div>
             <div
                 onClick={HandleError}
-                className="p-2 border-2 text-sm rounded-full">
+                className="p-2 border-2 cursor-pointer text-sm rounded-full">
                 <h1>Add Home</h1>
             </div>
         </div>

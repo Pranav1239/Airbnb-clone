@@ -57,7 +57,6 @@ function LoginBase() {
                      >Login</li>
                 </AlertDialogTrigger>
                 <AlertDialogContent>
-                <ToastContainer />  
                     <AlertDialogHeader>
                         <AlertDialogTitle>
                             <div className="flex justify-between items-center">

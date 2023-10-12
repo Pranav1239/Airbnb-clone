@@ -78,7 +78,6 @@ function SigninBase() {
                         </div></AlertDialogTitle>
                     <AlertDialogDescription asChild>
                         <div className="mt-4">
-                        <ToastContainer />
                             <form onSubmit={handleSubmit(onSubmit)}>
                                 <h1 className="text-xl font-bold">Welcome to Airbnb</h1>
                                 <div className="mt-5">
