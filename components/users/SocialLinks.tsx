@@ -3,15 +3,16 @@ import { Button } from "../ui/button";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import { GoogleLogo } from "../../assets/google.png"
+import { GithubLogo } from "../../assets/github.png"
 
 export default function SocialLinks() {
     const supabase = createClientComponentClient();
-    const githubLogin = async ()=>{
-        const {error} = await supabase.auth.signInWithOAuth({
-            provider : 'github',
-            options : {
-                redirectTo : `${location.origin}/auth/callback`
+    const githubLogin = async () => {
+        const { error } = await supabase.auth.signInWithOAuth({
+            provider: 'github',
+            options: {
+                redirectTo: `${location.origin}/auth/callback`
             }
         });
         if (error) {
@@ -19,11 +20,11 @@ export default function SocialLinks() {
         }
     }
 
-    const googleLogin = async ()=>{
-        const {error} = await supabase.auth.signInWithOAuth({
-            provider : 'google',
-            options : {
-                redirectTo : `${location.origin}/auth/callback`
+    const googleLogin = async () => {
+        const { error } = await supabase.auth.signInWithOAuth({
+            provider: 'google',
+            options: {
+                redirectTo: `${location.origin}/auth/callback`
             }
         });
         if (error) {
@@ -34,7 +35,7 @@ export default function SocialLinks() {
         <div className="mt-5">
             <Button variant="outline" className="w-full" onClick={googleLogin}>
                 <Image
-                    src="/images/google.png"
+                    src={GoogleLogo}
                     alt="google"
                     width={25}
                     height={25}
@@ -43,8 +44,8 @@ export default function SocialLinks() {
                 Continue with Google
             </Button>
             <Button variant="outline" className="w-full" onClick={githubLogin}>
-                <Image
-                    src="/images/github.png"
+            <Image
+                    src={GithubLogo}
                     alt="github"
                     width={25}
                     height={25}

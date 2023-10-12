@@ -6,6 +6,8 @@ import Image from "next/image";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import {AddHome1} from "../../assets/home_img.jpeg"
+import {AddHome2} from "../../assets/home_img1.jpeg"
 export default async function page() {
     const supabaseUser = createServerComponentClient({ cookies });
     const {
@@ -30,15 +32,15 @@ export default async function page() {
                             <strong className="text-3xl"> /per night</strong>
                         </div>
                         <div className="flex flex-row gap-4">
-                            <Image
-                                src="/images/home_img.jpeg"
+                        <Image
+                                src={AddHome1}
                                 width={200}
                                 height={200}
                                 alt="home"
                                 className="rounded-2xl object-cover"
                             />
                             <Image
-                                src="/images/home_img1.jpeg"
+                                src={AddHome2}
                                 width={205}
                                 height={205}
                                 alt="home"
