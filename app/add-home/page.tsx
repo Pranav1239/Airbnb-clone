@@ -6,8 +6,8 @@ import Image from "next/image";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import {AddHome1} from "../../assets/home_img.jpeg"
-import {AddHome2} from "../../assets/home_img1.jpeg"
+import AddHome1 from "../../assets/home_img.jpeg"
+import AddHome2 from "../../assets/home_img1.jpeg"
 export default async function page() {
     const supabaseUser = createServerComponentClient({ cookies });
     const {

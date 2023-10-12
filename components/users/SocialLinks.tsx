@@ -3,8 +3,8 @@ import { Button } from "../ui/button";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { GoogleLogo } from "../../assets/google.png"
-import { GithubLogo } from "../../assets/github.png"
+import  GoogleLogo  from "../../assets/google.png";
+import  GithubLogo  from "../../assets/github.png";
 
 export default function SocialLinks() {
     const supabase = createClientComponentClient();
