@@ -6,28 +6,30 @@ import Link from "next/link";
 import SearchSheet from "../Sheet/SearchSheet";
 import NavbarExtra from "./NavbarExtra";
 
-async function  Navbar() {
+async function Navbar() {
     const supabase = createServerComponentClient({ cookies });
     const session = await supabase.auth.getSession();
     return (
         <div className="flex justify-between items-center px-10">
             <div className="hidden md:block">
-                <Link href={"/"}>                    
-                <Logo />
+                <Link href={"/"}>
+                    <Logo />
                 </Link>
+            </div>
+            <div className="md:hidden">
             </div>
             <SearchSheet session={session} />
             <div className="hidden md:flex flex-row items-center">
-            {session ? (
-                <NavbarExtra />
-            ) : (
-                <Link href={"/add-home"} className="p-2 border-2 rounded-full">
-                <h1 >Add home</h1>
-                </Link>
-            )}
+                {session ? (
+                    <Link href={"/add-home"} className="p-2 border-2 rounded-full">
+                        <h1 >Add home</h1>
+                    </Link>
+                ) : (
+                    <NavbarExtra />
+                )}
 
                 <div className="mx-2 p-2 border-2 rounded-full">
-                <Navmenu session={session.data?.session}  />
+                    <Navmenu session={session.data?.session} />
                 </div>
             </div>
         </div>

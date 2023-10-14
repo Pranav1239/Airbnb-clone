@@ -1,4 +1,3 @@
-"use client"
 import { differenceInDays, parse } from "date-fns";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";

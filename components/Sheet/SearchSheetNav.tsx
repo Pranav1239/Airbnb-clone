@@ -1,4 +1,3 @@
-"use client"
 import Logo from "../Header/Logo";
 import Navmenu from "../Header/Navmenu";
 import { Input } from "../ui/input";
@@ -26,9 +25,6 @@ export default function SearchSheetNav({ session, searchInputCallback }:
                 <Link href={"/add-home"} className="p-2 border-2 rounded-full">
                     <h1 >Add home</h1>
                 </Link>
-                <div className="mx-2 p-2 border-2 rounded-full">
-                    <Navmenu session={session.data?.session} />
-                </div>
             </div>
         </div>
     )

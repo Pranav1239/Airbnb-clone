@@ -13,7 +13,7 @@ import { Button } from "./ui/button";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { generateRandomNumber } from "@/lib/utils";
 import Env from "@/config/Env";
-import { ToastContainer, toast } from 'react-toastify';
+import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {  useRouter } from "next/navigation";
 
